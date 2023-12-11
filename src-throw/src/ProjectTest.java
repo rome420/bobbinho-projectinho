@@ -104,7 +104,6 @@ public class ProjectTest {
     System.out.println("End Date: " + project4.getEndDate());
     System.out.println("Estimated Price: $" + project4.getEstimatedPrice());
     System.out.println("Project Status: " + project4.getProjectStatus());
-    System.out.println("Is Finished: " + project4.getFinishedProjects());
     System.out.println("Man Hours Used: " + project4.getManHoursUsed());
 
     if (project4 instanceof Industrial)
@@ -133,7 +132,6 @@ public class ProjectTest {
     System.out.println("End Date: " + project4.getEndDate());
     System.out.println("Estimated Price: $" + project4.getEstimatedPrice());
     System.out.println("Project Status: " + project4.getProjectStatus());
-    System.out.println("Is Finished: " + project4.getFinishedProjects());
     System.out.println("Man Hours Used: " + project4.getManHoursUsed());
 
     if (project4 instanceof Industrial)
@@ -188,7 +186,7 @@ public class ProjectTest {
       System.out.println("_____________________________________________________");
     }
 
-    projectManager.saveProjectsToXML("projects.xml");
+    projectManager.saveProjectsToHTML("projects.xml");
   }
 
 }
