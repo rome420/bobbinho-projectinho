@@ -9,12 +9,12 @@ public class ProjectTest {
     on how to create them and they all work*/
 
     ProjectManager projectManager = new ProjectManager();
-    List<Project> projectList = new ArrayList<>(); // Create a list to store projects
+    ProjectList projectList = new ProjectList();
+
 
     // Project 1
     MyDate startDate1 = new MyDate(23, 11, 2016);
     Project project1 = projectManager.createProjectForCustomer("Commercial", startDate1);
-    projectList.add(project1);
 
     // Display initial details of project1
     System.out.println("Before Update (Project 1):");
@@ -40,7 +40,6 @@ public class ProjectTest {
     // Project 2
     MyDate startDate2 = new MyDate(23, 11, 2016);
     Project project2 = projectManager.createProjectForCustomer("Commercial", startDate2);
-    projectList.add(project2);
 
     // Display initial details of project2
     System.out.println("\nBefore Update (Project 2):");
@@ -66,7 +65,6 @@ public class ProjectTest {
     // Project 3
     MyDate startDate3 = new MyDate(24, 11, 2016);
     Project project3 = projectManager.createProjectForCustomer("Residential", startDate3);
-    projectList.add(project3);
 
     // Display initial details of project3
     System.out.println("\nBefore Update (Project 3):");
@@ -94,7 +92,6 @@ public class ProjectTest {
     // Create a new project with default values based on project type and start date
     Project project4 = projectManager.createProjectForCustomer("Industrial",
         startDate4);
-    projectList.add(project4);
 
     System.out.println("Project ID: " + project4.getId());
     System.out.println("Project Type: " + project4.getProjectType());
@@ -146,7 +143,6 @@ public class ProjectTest {
 
     MyDate startDate5 = new MyDate(23, 3, 2003);
     Project project5 = projectManager.createProjectForCustomer("RoadConstruction", startDate5);
-    projectList.add(project5);
 
     // Display initial details of project3
     System.out.println("\nBefore Update (Project 5):");
@@ -171,23 +167,48 @@ public class ProjectTest {
       roadConstructionProject1.setChallenges("steep hills tourdefranceEuesque");
     }
 
+
+
     // Display updated details of project3
     System.out.println("\nAfter Update (Project 5):");
     System.out.println(project3.generateProgressReport());
 
 
 
+    for (Project p : projectList.getCompletedProjects()) {
+      System.out.println(p.generateProgressReport());
+      System.out.println("_____________________________________________________");
+    }
 
-
-    // Display information about projects in the list
-    System.out.println("\nInformation about projects in the list:");
-    for (Project p : projectList) {
+    for (Project p : projectList.getUnfinishedProjects()) {
       System.out.println(p.generateProgressReport());
       System.out.println("_____________________________________________________");
     }
 
     projectManager.saveProjectsToHTML("projects.xml");
+
+    projectList.addProject(project1, false);
+    projectList.addProject(project2, true);
+    projectList.addProject(project3, false);
+    projectList.addProject(project4, true);
+    projectList.addProject(project5, false);
+
+    // Display information about projects in the list
+    System.out.println("\nInformation about projects in the list:");
+    displayProjects(projectList.getCompletedProjects(), "Completed Projects:");
+    displayProjects(projectList.getUnfinishedProjects(), "Unfinished Projects:");
+
+    projectManager.saveProjectsToHTML("projects.xml");
   }
 
+  private static void displayProjects(List<Project> projects, String header) {
+    System.out.println(header);
+    for (Project project : projects) {
+      System.out.println(project.generateProgressReport());
+      System.out.println("_____________________________________________________");
+    }
+  }
 }
+
+
 
