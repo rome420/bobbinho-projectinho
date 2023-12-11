@@ -9,17 +9,17 @@ class Industrial extends Project {
 
   /**
    * Eleven-argument constructor to an Industrial type of project
-   * @param projectType The type of the project
-   * @param startDate The start date of the project
-   * @param endDate The end date of the project
-   * @param expectedDuration The expected duration of the project
-   * @param estimatedDate The estimated date to complete of the project
-   * @param estimatedPrice The estimated cost of the project
-   * @param projectStatus The status of the project
-   * @param projectId The unique identifier for the project
-   * @param manHoursUsed The number of man-hours used in the project
-   * @param squareMeters The square meters of the commercial building
-   * @param facilityType The type of facility of the project
+   * @param projectType       The type of the project
+   * @param startDate         The start date of the project
+   * @param endDate           The end date of the project
+   * @param expectedDuration  The expected duration of the project
+   * @param estimatedDate     The estimated date to complete of the project
+   * @param estimatedPrice    The estimated cost of the project
+   * @param projectStatus     The status of the project
+   * @param projectId         The unique identifier for the project
+   * @param manHoursUsed      The number of man-hours used in the project
+   * @param squareMeters      The square meters of the commercial building
+   * @param facilityType      The type of facility of the project
    */
   public Industrial(String projectType, MyDate startDate, MyDate endDate, MyDate expectedDuration,MyDate estimatedDate,
       double estimatedPrice, String projectStatus, int projectId, double manHoursUsed,
@@ -66,7 +66,7 @@ class Industrial extends Project {
   }
 
   /**
-   * A string containing details about the Industrial project
+   * A string method containing details about the Industrial project
    *
    * @return a string containing the details about the Industrial project
    */

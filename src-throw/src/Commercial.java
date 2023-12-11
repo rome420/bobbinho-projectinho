@@ -11,18 +11,18 @@ class Commercial extends Project
 
   /**
    * Twelve-argument constructor to Commercial type of project
-   * @param projectType The type of the project
-   * @param startDate The start date of the project
-   * @param endDate The end date of the project
+   * @param projectType     The type of the project
+   * @param startDate       The start date of the project
+   * @param endDate         The end date of the project
    * @param expecteDuration The expected duration of the project
-   * @param estimatedDate The estimated date to complete of the project
-   * @param estimatedPrice The estimated cost of the project
-   * @param projectStatus The status of the project
-   * @param projectId The unique identifier for the project
-   * @param manHoursUsed The number of man-hours used in the project
-   * @param squareMeters The square meters of the commercial building
-   * @param numberOfFloors The number of floors in the commercial building
-   * @param buildingUse The designated use of the commercial building
+   * @param estimatedDate   The estimated date to complete of the project
+   * @param estimatedPrice  The estimated cost of the project
+   * @param projectStatus   The status of the project
+   * @param projectId       The unique identifier for the project
+   * @param manHoursUsed    The number of man-hours used in the project
+   * @param squareMeters    The square meters of the commercial building
+   * @param numberOfFloors  The number of floors in the commercial building
+   * @param buildingUse     The designated use of the commercial building
    */
   public Commercial(String projectType, MyDate startDate, MyDate endDate, MyDate expecteDuration,
       MyDate estimatedDate, double estimatedPrice, String projectStatus, int projectId, double manHoursUsed,
@@ -96,7 +96,7 @@ class Commercial extends Project
   }
 
   /**
-   * Returns a string representation of the Commercial project
+   * A string method representation of the Commercial project
    *
    * @return A string containing details about the Commercial project
    */
