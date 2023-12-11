@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.*;
@@ -335,37 +338,76 @@ public class ProjectManager
     return project;
   }
 
-  public void saveProjectsToXML(String fileName) {
+  public void saveProjectsToHTML(String fileName) {
     try {
-      DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+      StringBuilder htmlData = new StringBuilder();
+      htmlData.append("<html>\n");
+      htmlData.append("<head><title>Projects</title></head>\n");
+      htmlData.append("<body>\n");
 
-      // Create the root element
-      Document doc = docBuilder.newDocument();
-      Element rootElement = doc.createElement("projects");
-      doc.appendChild(rootElement);
-
-      // Iterate through each project and create project elements
       for (Project project : projects) {
-        Element projectElement = createProjectElement(doc, project);
-        rootElement.appendChild(projectElement);
+        htmlData.append("  <div class=\"project\">\n");
+        htmlData.append("    <h2>Project ID: ").append(project.getId()).append("</h2>\n");
+        htmlData.append("    <p>Type: ").append(project.getProjectType()).append("</p>\n");
+        htmlData.append("    <p>Start Date: ").append(project.getStartDate()).append("</p>\n");
+        htmlData.append("    <p>End Date: ").append(project.getEndDate()).append("</p>\n");
+        htmlData.append("    <p>Expected Duration: ").append(project.expectedDuration()).append("</p>\n");
+        htmlData.append("    <p>Estimated Date: ").append(project.getEstimatedDate()).append("</p>\n");
+        htmlData.append("    <p>Estimated Price: $").append(project.getEstimatedPrice()).append("</p>\n");
+        htmlData.append("    <p>Project Status: ").append(project.getProjectStatus()).append("</p>\n");
+        htmlData.append("    <p>Is Finished: ").append(project.isFinished()).append("</p>\n");
+        htmlData.append("    <p>Man Hours Used: ").append(project.getManHoursUsed()).append("</p>\n");
+
+        // Add type-specific details based on project type
+        if (project instanceof Residential) {
+          displayResidentialData(htmlData, (Residential) project);
+        } else if (project instanceof Commercial) {
+          displayCommercialData(htmlData, (Commercial) project);
+        } else if (project instanceof Industrial) {
+          displayIndustrialData(htmlData, (Industrial) project);
+        } else if (project instanceof RoadConstruction) {
+          displayRoadConstructionData(htmlData, (RoadConstruction) project);
+        }
+
+        htmlData.append("  </div>\n");
       }
 
-      // Write the content into XML file
-      TransformerFactory transformerFactory = TransformerFactory.newInstance();
-      Transformer transformer = transformerFactory.newTransformer();
-      DOMSource source = new DOMSource(doc);
-      StreamResult result = new StreamResult(new File(fileName));
+      htmlData.append("</body>\n");
+      htmlData.append("</html>");
 
-      // Output to console for testing
-      // StreamResult result = new StreamResult(System.out);
+      // Write the HTML data to a file
+      Files.write(Paths.get(fileName), htmlData.toString().getBytes());
 
-      transformer.transform(source, result);
-
-      System.out.println("Projects saved to XML file: " + fileName);
-    } catch (ParserConfigurationException | TransformerException e) {
+      System.out.println("Projects saved to HTML file: " + fileName);
+    } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private void displayResidentialData(StringBuilder htmlData, Residential residential) {
+    htmlData.append("    <p>Square Meters: ").append(residential.getSquareMeters()).append("</p>\n");
+    htmlData.append("    <p>Number of Kitchens: ").append(residential.getNumberOfKitchens()).append("</p>\n");
+    htmlData.append("    <p>Number of Bathrooms: ").append(residential.getNumberOfBathrooms()).append("</p>\n");
+    htmlData.append("    <p>Other Rooms with Plumbing: ").append(residential.getOtherRoomsWithPlumbing()).append("</p>\n");
+    htmlData.append("    <p>Is New Build: ").append(residential.getIsNewBuild()).append("</p>\n");
+  }
+
+  private void displayCommercialData(StringBuilder htmlData, Commercial commercial) {
+    htmlData.append("    <p>Square Meters: ").append(commercial.getSquareMeters()).append("</p>\n");
+    htmlData.append("    <p>Number of Floors: ").append(commercial.getNumberOfFloors()).append("</p>\n");
+    htmlData.append("    <p>Building Use: ").append(commercial.getBuildingUse()).append("</p>\n");
+  }
+
+  private void displayIndustrialData(StringBuilder htmlData, Industrial industrial) {
+    htmlData.append("    <p>Square Meters: ").append(industrial.getSquareMeters()).append("</p>\n");
+    htmlData.append("    <p>Facility Type: ").append(industrial.getFacilityType()).append("</p>\n");
+  }
+
+  private void displayRoadConstructionData(StringBuilder htmlData, RoadConstruction roadConstruction) {
+    htmlData.append("    <p>Road Length (km): ").append(roadConstruction.getRoadLengthKilometers()).append("</p>\n");
+    htmlData.append("    <p>Road Width (m): ").append(roadConstruction.getRoadWidthMeters()).append("</p>\n");
+    htmlData.append("    <p>Number of Road Alterations: ").append(roadConstruction.getNumberOfRoadAlterations()).append("</p>\n");
+    htmlData.append("    <p>Challenges: ").append(roadConstruction.getChallenges()).append("</p>\n");
   }
 
   private Element createProjectElement(Document doc, Project project) {
