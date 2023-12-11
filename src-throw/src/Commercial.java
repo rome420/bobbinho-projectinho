@@ -36,7 +36,7 @@ class Commercial extends Project
   }
 
   /**
-   * Gets the square meters of the commervial building
+   * Getter of the square meters of the commercial building
    *
    * @return the square meters
    */
