@@ -187,6 +187,9 @@ public class ProjectTest {
       System.out.println(p.generateProgressReport());
       System.out.println("_____________________________________________________");
     }
+
+    projectManager.saveProjectsToXML("projects.xml");
   }
+
 }
 
