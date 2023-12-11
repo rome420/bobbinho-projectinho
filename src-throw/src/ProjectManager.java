@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
+import org.w3c.dom.*;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 public class ProjectManager
 {
   private List<Project> projects;
@@ -325,6 +333,61 @@ public class ProjectManager
 
     addProject(project, false); // Assuming the project is not finished initially
     return project;
+  }
+
+  public void saveProjectsToXML(String fileName) {
+    try {
+      DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+      // Create the root element
+      Document doc = docBuilder.newDocument();
+      Element rootElement = doc.createElement("projects");
+      doc.appendChild(rootElement);
+
+      // Iterate through each project and create project elements
+      for (Project project : projects) {
+        Element projectElement = createProjectElement(doc, project);
+        rootElement.appendChild(projectElement);
+      }
+
+      // Write the content into XML file
+      TransformerFactory transformerFactory = TransformerFactory.newInstance();
+      Transformer transformer = transformerFactory.newTransformer();
+      DOMSource source = new DOMSource(doc);
+      StreamResult result = new StreamResult(new File(fileName));
+
+      // Output to console for testing
+      // StreamResult result = new StreamResult(System.out);
+
+      transformer.transform(source, result);
+
+      System.out.println("Projects saved to XML file: " + fileName);
+    } catch (ParserConfigurationException | TransformerException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private Element createProjectElement(Document doc, Project project) {
+    Element projectElement = doc.createElement("project");
+
+    // Add project attributes
+    projectElement.setAttribute("id", String.valueOf(project.getId()));
+    projectElement.setAttribute("type", project.getProjectType());
+    // Add other project attributes as needed
+
+    // Add child elements for project details
+    appendChildElement(doc, projectElement, "start_date", project.getStartDate().toString());
+    appendChildElement(doc, projectElement, "end_date", project.getEndDate().toString());
+    // Add other child elements as needed
+
+    return projectElement;
+  }
+
+  private void appendChildElement(Document doc, Element parent, String tagName, String textContent) {
+    Element childElement = doc.createElement(tagName);
+    childElement.appendChild(doc.createTextNode(textContent));
+    parent.appendChild(childElement);
   }
 
 }
