@@ -199,6 +199,11 @@ public class Project
     }
     this.expectedDuration = expectedDuration; // Use expectedDuration instance variable
     calculateAndSetEstimatedDate(); // Recalculate estimated date when duration changes
+
+  }
+
+  public String expectedEndDuration(){
+    return expectedDuration.expectedDuration();
   }
 
   /**

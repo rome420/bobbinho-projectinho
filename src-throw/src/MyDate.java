@@ -159,6 +159,11 @@ public class MyDate
     return this.day < otherDate.day;
   }
 
+  public String expectedDuration(){
+    int months = getMonth();
+    return months + " " + "months";
+  }
+
     @Override public String toString () {
     return String.format("%02d/%02d/%04d", day, month, year);
   }

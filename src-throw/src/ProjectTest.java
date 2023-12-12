@@ -111,7 +111,6 @@ public class ProjectTest {
 
     // Update project details
     System.out.println("\nAfter Update:");
-    project4.setProjectId(9001);
     project4.setStartDate(new MyDate(20, 4, 2023));
     project4.setExpectedDuration(new MyDate(0, 18, 0));
     project4.calculateAndSetEstimatedDate();
@@ -142,21 +141,13 @@ public class ProjectTest {
     System.out.println("_____________________________________________________");
 
     MyDate startDate5 = new MyDate(23, 3, 2003);
-    Project project5 = projectManager.createProjectForCustomer("RoadConstruction", startDate5);
+    Project project5 = projectManager.createProjectForCustomer("Industrial", startDate5);
 
     // Display initial details of project3
     System.out.println("\nBefore Update (Project 5):");
     System.out.println(project5.generateProgressReport());
 
     // Update details of project5
-    project5.setStartDate(new MyDate(26, 6, 2001));
-    project5.setExpectedDuration(new MyDate(0, 23, 0));
-    project5.calculateAndSetEstimatedDate();
-    project5.setEndDate(new MyDate(23, 2, 2003));
-    project5.setEstimatedPrice(100000.0);
-    project5.setProjectStatus("In-Progress");
-    project5.setFinishedProjects(true);
-    project5.setManHoursUsed(100.0);
 
     // Check if it's a RoadConstruction project and update specific variables
     if (project5 instanceof RoadConstruction) {
@@ -199,7 +190,16 @@ public class ProjectTest {
     displayProjects(projectList.getUnfinishedProjects(), "Unfinished Projects:");
 
     projectManager.saveProjectsToHTML("projects.xml");
+    System.out.println("New test");
+    System.out.println(project5.expectedEndDuration());
+    System.out.println(project5.getEndDate());
+    System.out.println(project5.getId());
+    System.out.println(project5.getManHoursUsed());
+    System.out.println(project5.isFinished());
+    System.out.println(project5.getEstimatedDate());
+
   }
+
 
   private static void displayProjects(List<Project> projects, String header) {
     System.out.println(header);
@@ -207,7 +207,9 @@ public class ProjectTest {
       System.out.println(project.generateProgressReport());
       System.out.println("_____________________________________________________");
     }
+
   }
+
 }
 
 
