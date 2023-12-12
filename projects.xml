@@ -49,7 +49,7 @@
     <p>Is New Build: true</p>
   </div>
   <div class="project">
-    <h2>Project ID: 9001</h2>
+    <h2>Project ID: 1004</h2>
     <p>Type: Industrial</p>
     <p>Start Date: 20/04/2023</p>
     <p>End Date: 29/01/2025</p>
@@ -64,19 +64,17 @@
   </div>
   <div class="project">
     <h2>Project ID: 1005</h2>
-    <p>Type: RoadConstruction</p>
-    <p>Start Date: 26/06/2001</p>
-    <p>End Date: 23/02/2003</p>
-    <p>Expected Duration: 00/23/0000</p>
-    <p>Estimated Date: 26/05/2003</p>
-    <p>Estimated Price: $100000.0</p>
-    <p>Project Status: In-Progress</p>
-    <p>Is Finished: true</p>
-    <p>Man Hours Used: 100.0</p>
-    <p>Road Length (km): 575.0</p>
-    <p>Road Width (m): 40.75</p>
-    <p>Number of Road Alterations: 4</p>
-    <p>Challenges: steep hills tourdefranceEuesque</p>
+    <p>Type: Industrial</p>
+    <p>Start Date: 23/03/2003</p>
+    <p>End Date: 00/00/0000</p>
+    <p>Expected Duration: 00/30/0000</p>
+    <p>Estimated Date: 23/09/2005</p>
+    <p>Estimated Price: $2000000.0</p>
+    <p>Project Status: New Build</p>
+    <p>Is Finished: false</p>
+    <p>Man Hours Used: 0.0</p>
+    <p>Square Meters: 0.0</p>
+    <p>Facility Type: null</p>
   </div>
 </body>
 </html>
