@@ -15,12 +15,12 @@ import java.io.File;
 public class ProjectManager
 {
   private List<Project> projects;
-  private List<Customer> customers;
+
 
   public ProjectManager()
   {
     projects = new ArrayList<>();
-    customers = new ArrayList<>();
+
   }
 
   // Project-related methods
@@ -54,32 +54,7 @@ public class ProjectManager
     return null;
   }
 
-  public void addCustomer(Customer customer)
-  {
-    customers.add(customer);
-  }
 
-  public void removeCustomer(Customer customer)
-  {
-    customers.remove(customer);
-  }
-
-  public List<Customer> getAllCustomers()
-  {
-    return customers;
-  }
-
-  public Customer findCustomerByName(String name)
-  {
-    for (Customer customer : customers)
-    {
-      if (customer.getName().equals(name))
-      {
-        return customer;
-      }
-    }
-    return null;
-  }
 
   public List<Project> getProjectsByType(String projectType)
   {
