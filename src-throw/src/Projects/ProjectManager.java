@@ -37,16 +37,13 @@ public class ProjectManager
     projects.add(project);
     project.setFinishedProjects(isFinished);
 
-    // Update the TableView in the UI
-    viewHandler.getProjectsViewController().addProjectToTableView(project);
-
-    if (viewHandler != null) {
+    if (viewHandler != null && viewHandler.getProjectsViewController() != null) {
+      // Update the TableView in the UI
       viewHandler.getProjectsViewController().addProjectToTableView(project);
       viewHandler.getProjectsViewController().projectAdded(project, isFinished);
     } else {
-      System.err.println("Error: viewHandler is not initialized");
+      System.err.println("Error: viewHandler or ProjectsViewController is not initialized");
     }
-
   }
 
   public void removeProject(Project project, boolean isFinished)

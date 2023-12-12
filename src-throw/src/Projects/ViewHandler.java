@@ -26,6 +26,7 @@ public class ViewHandler {
   public void start(Stage primaryStage) {
     this.primaryStage = primaryStage;
     openView();
+    primaryStage.show();  // Make sure to call show() to display the stage
   }
 
   private void openView() {
